@@ -68,6 +68,12 @@
     <!-- STEP 3: Result section (hidden at first) -->
     <div id="resultSection" class="mt-4 d-none" style="max-width: 700px; margin-left:auto; margin-right:auto;">
 
+      <div id="resumeRatingCard" class="card p-4 shadow-sm mb-3 d-none">
+        <h4 class="mb-3">⭐ Resume Rating</h4>
+        <h2 id="resumeScore" class="text-primary"></h2>
+        <p id="resumeFeedback" class="mb-0"></p>
+      </div>
+
       <div class="card p-4 shadow-sm mb-3">
         <h4 class="mb-3">🎯 Skill Gap</h4>
         <ul id="skillGapList" class="mb-0"></ul>
@@ -129,6 +135,15 @@
       if (result.error_message || result.error) {
         showError("Something went wrong: " + (result.error_message || result.error));
         return;
+      }
+
+      // Resume rating (only shows if present)
+      if (result.resume_rating) {
+        document.getElementById('resumeRatingCard').classList.remove('d-none');
+        document.getElementById('resumeScore').textContent = result.resume_rating.score + " / 10";
+        document.getElementById('resumeFeedback').textContent = result.resume_rating.feedback;
+      } else {
+        document.getElementById('resumeRatingCard').classList.add('d-none');
       }
 
       // Skill gap

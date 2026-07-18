@@ -106,6 +106,10 @@ Target role: {role}
 Based on this resume and target role, respond ONLY with valid JSON (no markdown, no backticks, no extra text) in exactly this structure:
 
 {{
+  "resume_rating": {{
+    "score": "a number from 1 to 10 rating the overall quality of this resume",
+    "feedback": "2 to 3 sentences of specific, constructive feedback on how to improve this resume"
+  }},
   "skill_gap": ["list of specific missing skills for this role"],
   "roadmap": ["ordered list of things to learn, step by step"],
   "study_plan": {{
